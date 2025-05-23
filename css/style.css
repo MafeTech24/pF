@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
+.texto{
+    text-align: justify;
+    margin: 10px;
+    padding: 10px;
+}
+.portada{
+    margin: 20px;
+    padding: 10px;
+}
+.subtitulo1{
+    text-align: center;
+}
+
+/** Perfumería **/
+
+.fraganciasFem,
+.fraganciasMasc,
+.fraganciasUnix{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-around;
+    
+}
+.tarjeta{
+    width: 400px;
+    height: 350px;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    border: 2px solid #5f6062;     
+    border-radius: 5px;
+}
+.imagen{
+    width: 150px;
+    height: 150px;
+}
+.agrega,
+.agrega1,
+.agrega2{
+    width: 150px;
+    border-radius: 3px;
+    background-color: azure;
+}
+.precio{
+    font-size: 25px;
+    font-weight: bolder;
+}
+/** Carrito **/
+
+.contenedorCarrito{
+    display: flex;
+    flex-direction: column;    
+}
+.img-car{
+    width: 75px;
+    height: 75px;
+}
+.subTit2{
+    font-size: 20px;
+}
+.subTit3{
+    font-size: 18px;
+}
+.precCar{
+    font-size: 15px;
+    
+}
+.tarj-car{
+    width: 600px;
+    height: 350px;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    border: 2px solid #5f6062;     
+    border-radius: 5px;
+}
