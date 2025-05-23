@@ -179,7 +179,9 @@ function añadirAlCarrito () {
 }
 
 let descripcion = document.getElementById("descripcion")
-descripcion.innerHTML = `<h2 class="subtitulo1" id="fragFem">Fragancias Femeninas</h2>
+descripcion.innerHTML = `<a href="#frag-masc1">Fragancias Masculinas</a>
+                         <h2 class="subtitulo1" id="fragFem">Fragancias Femeninas</h2>
+                         <a href="#frag-unisex1">Fragancias Unisex</a>
                          <p class="texto">Sumérgete en el universo de la elegancia y la sensualidad con nuestra exclusiva colección de perfumes femeninos.
 Desde aromas suaves y florales hasta notas intensas y sofisticadas, cada fragancia está pensada para resaltar tu esencia en cada momento del día.
 Trabajamos con marcas nacionales e importadas reconocidas por su calidad y distinción.
@@ -263,20 +265,36 @@ Encuentra el perfume ideal que hable por ti… porque cada mujer merece dejar un
 const tarjetasMasc = []
 let fraganciasMasculinas = document.getElementById("frag-masc")
 fraganciasMasculinas.className = "fraganciasMasc"
-function renderMasc(masculinosArrays) {
-    masculinosArrays.forEach((masculino) => {
-        const tarjetaMsc = document.createElement("section")
-        tarjetaMsc.innerHTML = `<img src=${masculino.img} class="imagen">
-                             <h4>${masculino.marca}</h4>
-                             <h5>${masculino.nombre}</h5>
-                             <p class="precio">$${masculino.precio}</p>
-                             <button class="agrega1" id=${masculino.codigo}>Agregar al Carrito</button>`
-        fraganciasMasculinas.appendChild(tarjetaMsc)
-        tarjetaMsc.className = "tarjeta"
+// function renderMasc(masculinosArrays) {
+//     masculinosArrays.forEach((masculino) => {
+//         const tarjetaMsc = document.createElement("section")
+//         tarjetaMsc.innerHTML = `<img src=${masculino.img} class="imagen">
+//                              <h4>${masculino.marca}</h4>
+//                              <h5>${masculino.nombre}</h5>
+//                              <p class="precio">$${masculino.precio}</p>
+//                              <button class="agrega1" id=${masculino.codigo}>Agregar al Carrito</button>`
+//         fraganciasMasculinas.appendChild(tarjetaMsc)
+//         tarjetaMsc.className = "tarjeta"
+//     })
+//     añadirAlCarritoMs()
+// }
+// renderMasc(masculinos)
+
+fetch("../baseDatos/fragMasc.json")
+    .then(response => response.json())
+    .then(data => {
+        data.forEach((masculino) => {
+            const tarjeta = document.createElement("section")
+            tarjeta.className = "tarjeta"
+            tarjeta.innerHTML = `<img src=${masculino.img} class="imagen">
+                                 <h4>${masculino.marca}</h4>
+                                 <h5>${masculino.nombre}</h5>
+                                 <p class="precio">$${masculino.precio}</p>
+                                 <button class="agrega" id=${masculino.codigo}>Agregar al Carrito</button>`
+            fraganciasMasculinas.appendChild(tarjeta)
+            tarjeta.className = "tarjeta"
+        })
     })
-    añadirAlCarritoMs()
-}
-renderMasc(masculinos)
 
 function añadirAlCarritoMs () {
     agregaCarritoMs = document.querySelectorAll(".agrega1")
@@ -293,91 +311,95 @@ function añadirAlCarritoMs () {
 }
 
 let fragMasc = document.getElementById("frag-masc1")
-fragMasc.innerHTML = `<h2 class="subtitulo1" id="fragMasc1">Fragancias Masculinas</h2>
+fragMasc.innerHTML = `<a href="#fragFem">Fragancias Femeninas</a>
+                      <h2 class="subtitulo1" id="fragMasc1">Fragancias Masculinas</h2>
+                      <a href="#fragUnisex1">Fragancias Unisex</a>
                       <p class="texto">Descubre nuestra selección de perfumes masculinos diseñados para destacar la fuerza, elegancia y autenticidad del hombre moderno.
 Desde notas frescas y cítricas hasta aromas intensos y amaderados, cada fragancia transmite personalidad y carácter.
 Trabajamos con marcas nacionales e importadas que garantizan calidad, duración y estilo.
 Encuentra el aroma perfecto para cada ocasión y deja una impresión que perdure.</p>`
 
 
-const unisexs = [
-    {
-        img:"../assets/perfumeria/tomford2600.webp",
-        marca: "TOM FORD",
-        nombre:"Fucking Fabulous EDP 100 ml + Soleil Neige EDP 100 ml SET",
-        presentacion: 100,
-        codigo:2600,
-        precio:1183478,
-    },
-    {
-        img:"../assets/perfumeria/tomford2601.webp",
-        marca: "TOM FORD",
-        nombre:"Soleil Blanc EDP",
-        presentacion: 100,
-        codigo:2601,
-        precio:788986,
-    },  
-    {
-        img:"../assets/perfumeria/loewe2800.webp",
-        marca: "LOEWE",
-        nombre:"LOEWE EARTH ELIXIR EDP",
-        presentacion: 100,
-        codigo:2800,
-        precio:437000,
-    },   
-    {
-        img:"../assets/perfumeria/guerlain3001.webp",
-        marca: "GUERLAIN",
-        nombre:"Aqua Allegoria Forte Bosca Vanilla EDP",
-        presentacion: 125,
-        codigo:3001,
-        precio:310000,
-    },     
-    {
-        img:"../assets/perfumeria/loewe2801.webp",
-        marca: "LOEWE",
-        nombre:"LOEWE AGUA DROP EDP",
-        presentacion: 100,
-        codigo:2801,
-        precio:325000,
-    },   
-    {
-        img:"../assets/perfumeria/loewe2802.webp",
-        marca: "LOEWE",
-        nombre:"LOEWE SOLO VULCAN EDP",
-        presentacion: 100,
-        codigo:2802,
-        precio:325000,
-    },
-    {
-        img:"../assets/perfumeria/tomFord2602.webp",
-        marca: "TOM FORD",
-        nombre:"Soleil Blanc EDP + Body Oil COFRE",
-        presentacion: 50,
-        codigo:2602,
-        precio:869202,
-    },
-    {
-        img:"../assets/perfumeria/calvin3200.webp",
-        marca: "CALVIN KLEIN",
-        nombre:"CK One Gold EDT",
-        presentacion:100,
-        codigo:3200,
-        precio:81675,
-    },
-    {
-        img:"../assets/perfumeria/guerlain3000.webp",
-        marca: "GUERLAIN",
-        nombre:"Absolus Allegoria Rose Amira EDP",
-        presentacion: 125,
-        codigo:3000,
-        precio:352000,
-    }, 
-]             
+// const unisexs = [
+//     {
+//         img:"../assets/perfumeria/tomford2600.webp",
+//         marca: "TOM FORD",
+//         nombre:"Fucking Fabulous EDP 100 ml + Soleil Neige EDP 100 ml SET",
+//         presentacion: 100,
+//         codigo:2600,
+//         precio:1183478,
+//     },
+//     {
+//         img:"../assets/perfumeria/tomford2601.webp",
+//         marca: "TOM FORD",
+//         nombre:"Soleil Blanc EDP",
+//         presentacion: 100,
+//         codigo:2601,
+//         precio:788986,
+//     },  
+//     {
+//         img:"../assets/perfumeria/loewe2800.webp",
+//         marca: "LOEWE",
+//         nombre:"LOEWE EARTH ELIXIR EDP",
+//         presentacion: 100,
+//         codigo:2800,
+//         precio:437000,
+//     },   
+//     {
+//         img:"../assets/perfumeria/guerlain3001.webp",
+//         marca: "GUERLAIN",
+//         nombre:"Aqua Allegoria Forte Bosca Vanilla EDP",
+//         presentacion: 125,
+//         codigo:3001,
+//         precio:310000,
+//     },     
+//     {
+//         img:"../assets/perfumeria/loewe2801.webp",
+//         marca: "LOEWE",
+//         nombre:"LOEWE AGUA DROP EDP",
+//         presentacion: 100,
+//         codigo:2801,
+//         precio:325000,
+//     },   
+//     {
+//         img:"../assets/perfumeria/loewe2802.webp",
+//         marca: "LOEWE",
+//         nombre:"LOEWE SOLO VULCAN EDP",
+//         presentacion: 100,
+//         codigo:2802,
+//         precio:325000,
+//     },
+//     {
+//         img:"../assets/perfumeria/tomFord2602.webp",
+//         marca: "TOM FORD",
+//         nombre:"Soleil Blanc EDP + Body Oil COFRE",
+//         presentacion: 50,
+//         codigo:2602,
+//         precio:869202,
+//     },
+//     {
+//         img:"../assets/perfumeria/calvin3200.webp",
+//         marca: "CALVIN KLEIN",
+//         nombre:"CK One Gold EDT",
+//         presentacion:100,
+//         codigo:3200,
+//         precio:81675,
+//     },
+//     {
+//         img:"../assets/perfumeria/guerlain3000.webp",
+//         marca: "GUERLAIN",
+//         nombre:"Absolus Allegoria Rose Amira EDP",
+//         presentacion: 125,
+//         codigo:3000,
+//         precio:352000,
+//     }, 
+// ]             
 
 
 let fragUnisex = document.getElementById("frag-unisex1")
-fragUnisex.innerHTML = `<h2 class="subtitulo1" id="fragUnisex1">Fragancias Unisex</h2>
+fragUnisex.innerHTML = `<a href="#fragFem">Fragancias Femeninas</a>
+                        <h2 class="subtitulo1" id="fragUnisex1">Fragancias Unisex</h2>
+                        <a href="#frag-masc1">Fragancias Masculinas</a>
                         <p class="texto">Explora el equilibrio perfecto entre lo masculino y lo femenino con nuestra colección de fragancias unisex.
 Aromas versátiles, modernos y elegantes que se adaptan a cualquier estilo y personalidad.
 Desde esencias frescas y cítricas hasta combinaciones amaderadas y especiadas, cada perfume es una invitación a romper estereotipos y expresar tu autenticidad.
@@ -386,20 +408,39 @@ Elige tu esencia sin etiquetas y haz que tu aroma hable por ti.</p>`
 const tarjetasUnix = []
 let fraganciasUnisexs = document.getElementById("frag-unisex")
 fraganciasUnisexs.className = "fraganciasUnix"
-function renderUnix(unisexsArrays) {
-    unisexsArrays.forEach((unisex) => {
-        const tarjetaUnx = document.createElement("section")
-        tarjetaUnx.innerHTML = `<img src=${unisex.img} class="imagen">
-                             <h4>${unisex.marca}</h4>
-                             <h5>${unisex.nombre}</h5>
-                             <p class="precio">$${unisex.precio}</p>
-                             <button class="agrega2" id=${unisex.codigo}>Agregar al Carrito</button>`
-        fraganciasUnisexs.appendChild(tarjetaUnx)
-        tarjetaUnx.className = "tarjeta"
+// function renderUnix(unisexsArrays) {
+//     unisexsArrays.forEach((unisex) => {
+//         const tarjetaUnx = document.createElement("section")
+//         tarjetaUnx.innerHTML = `<img src=${unisex.img} class="imagen">
+//                              <h4>${unisex.marca}</h4>
+//                              <h5>${unisex.nombre}</h5>
+//                              <p class="precio">$${unisex.precio}</p>
+//                              <button class="agrega2" id=${unisex.codigo}>Agregar al Carrito</button>`
+//         fraganciasUnisexs.appendChild(tarjetaUnx)
+//         tarjetaUnx.className = "tarjeta"
+//     })
+//     añadirAlCarritoUnx()
+// }
+// renderUnix(unisexs)
+
+fetch("../baseDatos/fragUni.json")
+    .then(response => response.json())
+    .then(data => {
+        data.forEach((unisex) => {
+            const tarjeta = document.createElement("section")
+            tarjeta.className = "tarjeta"
+            tarjeta.innerHTML = `<img src=${unisex.img} class="imagen">
+                                 <h4>${unisex.marca}</h4>
+                                 <h5>${unisex.nombre}</h5>
+                                 <p class="precio">$${unisex.precio}</p>
+                                 <button class="agrega" id=${unisex.codigo}>Agregar al Carrito</button>`
+            fraganciasUnisexs.appendChild(tarjeta)
+            tarjeta.className = "tarjeta"
+        })
     })
-    añadirAlCarritoUnx()
-}
-renderUnix(unisexs)
+
+
+
 
 function añadirAlCarritoUnx () {
     agregaCarritoUnx = document.querySelectorAll(".agrega2")
