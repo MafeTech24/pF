@@ -138,12 +138,14 @@
 //     añadirAlCarrito()
 // }
 // renderFem(femeninas)
+
+
 let fraganciasFemeninas = document.getElementById("frag-fem")
 fraganciasFemeninas.className = "fraganciasFem"
-fetch("./db/fragFem.json")
+fetch("../baseDatos/fragFem.json")
     .then(response => response.json())
     .then(data => {
-        data.forEach(femenino => {
+        data.forEach((femenino) => {
             const tarjeta = document.createElement("section")
             tarjeta.className = "tarjeta"
             tarjeta.innerHTML = `<img src=${femenino.img} class="imagen">
@@ -156,6 +158,10 @@ fetch("./db/fragFem.json")
         })
     })
 
+// fetch("../baseDatos/fragFem.json")
+//   .then(response => response.json())
+//   .then(data => console.log(data))
+//   .catch(err => console.error('Error al cargar JSON:', err));
 
 
 function añadirAlCarrito () {
