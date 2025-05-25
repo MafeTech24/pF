@@ -93,7 +93,6 @@ function iniciarSesion() {
         html:
           '<input id="usuario" class="swal2-input" placeholder="Usuario">' +
             '<input id="clave" type="password" class="swal2-input" placeholder="Contraseña">',
-            footer:'<a href="#">Crea una Cuenta</a>',
         showCancelButton: true,
         confirmButtonText: 'Entrar',
         preConfirm: () => {
@@ -106,3 +105,44 @@ function iniciarSesion() {
         }
       });
 }
+
+const registrarse = document.getElementById("registrarse")
+registrarse.addEventListener("click", registrar)
+function registrar() {    
+    Swal.fire({
+        title: 'Registro de Cuenta Nueva',
+        html:
+          '<input id="nombre" class="swal2-input" placeholder="Nombre">' +
+          '<input id="apellido" class="swal2-input" placeholder="Apellido">' +
+          '<input id="email" type="email" class="swal2-input" placeholder="Correo electrónico">' +
+          '<input id="telefono" class="swal2-input" placeholder="Teléfono">' +
+          '<input id="password" type="password" class="swal2-input" placeholder="Contraseña">',          
+        confirmButtonText: 'Registrarse',
+        showCancelButton: true,
+        preConfirm: () => {
+          const nombre = document.getElementById('nombre').value;
+          const apellido = document.getElementById('apellido').value;
+          const email = document.getElementById('email').value;
+          const telefono = document.getElementById('telefono').value;
+          const password = document.getElementById('password').value;
+          
+      
+          if (!nombre || !apellido || !email || !telefono || !password) {
+            Swal.showValidationMessage('Por favor, completa todos los campos');
+            return false;
+          }
+      
+          return { nombre, apellido, email, telefono, password };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Se ha Registrado con Éxito!",
+                icon: "success",
+                confirmButtonText: "Ingresar"
+              });
+        }
+      });
+      
+
+    }

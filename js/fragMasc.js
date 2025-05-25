@@ -1,11 +1,51 @@
-/***** Breve Descripción de la Empresa *******/
-let presentacion = document.getElementById("presentación")
-presentacion.innerHTML = `<p class="texto">Somos una distribuidora especializada en perfumes nacionales e importados, ofreciendo una amplia selección de fragancias femeninas, masculinas y unisex.
-Trabajamos con marcas reconocidas y aromas exclusivos para satisfacer todos los gustos, desde lo clásico hasta lo más moderno.
-Ya sea para uso personal, regalo o negocio, aquí encontrarás calidad, autenticidad y excelentes precios.
-Descubre tu próxima fragancia con nosotros y déjate envolver por el arte del buen perfume.</p>
-                          <img class="portada" src=./assets/portada2.webp>`
+let fragMasc = document.getElementById("frag-masc1")
+fragMasc.innerHTML = `<p class="texto">Descubre nuestra selección de perfumes masculinos diseñados para destacar la fuerza, elegancia y autenticidad del hombre moderno.
+Desde notas frescas y cítricas hasta aromas intensos y amaderados, cada fragancia transmite personalidad y carácter.
+Trabajamos con marcas nacionales e importadas que garantizan calidad, duración y estilo.
+Encuentra el aroma perfecto para cada ocasión y deja una impresión que perdure.</p>`
 
+const tarjetasMasc = []
+let fraganciasMasculinas = document.getElementById("frag-masc")
+fraganciasMasculinas.className = "fraganciasMasc"
+fetch("../baseDatos/fragMasc.json")
+    .then(response => response.json())
+    .then(data => {
+        data.forEach((masculino) => {
+            const tarjetaMs = document.createElement("section")
+            tarjetaMs.className = "tarjeta"
+            tarjetaMs.innerHTML = `<img src=${masculino.img} class="imagen">
+                                 <h4>${masculino.marca}</h4>
+                                 <h5>${masculino.nombre}</h5>
+                                 <p class="precio">$${masculino.precio}</p>
+                                 <button class="agrega1" id=${masculino.codigo}>Agregar al Carrito</button>`
+            fraganciasMasculinas.appendChild(tarjetaMs)
+            tarjetaMs.className = "tarjeta"
+        })
+        añadirAlCarritoMs (data)
+    })
+
+function añadirAlCarritoMs (data) {
+    agregaCarritoMs = document.querySelectorAll(".agrega1")
+    agregaCarritoMs.forEach (button => {
+        button.onclick = (e) => {
+            const mascCodigo = e.currentTarget.id
+            const agregarProdMs = data.find (masculino => masculino.codigo === mascCodigo)
+            tarjetasMasc.push(agregarProdMs)
+            console.log(tarjetasMasc)
+            localStorage.setItem("tarjetasMasc", JSON.stringify(tarjetasMasc))
+            alertAgregado()
+        }
+    })
+}
+
+/***** Producto Agregado con Exito *******/
+const alertAgregado = () => {
+    Swal.fire({                
+        title: "Producto Agregado con ÉXITO",
+        icon: "success",
+        background: "rgb(238, 250, 248)"
+      });
+};
 
 /***** Acceso al Formulario para Iniciar Sesión */                     
 const loguin = document.getElementById("loginIcon")
@@ -66,4 +106,7 @@ function registrar() {
               });
         }
       });
+      
+
     }
+

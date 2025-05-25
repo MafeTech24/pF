@@ -1,11 +1,51 @@
-/***** Breve Descripción de la Empresa *******/
-let presentacion = document.getElementById("presentación")
-presentacion.innerHTML = `<p class="texto">Somos una distribuidora especializada en perfumes nacionales e importados, ofreciendo una amplia selección de fragancias femeninas, masculinas y unisex.
-Trabajamos con marcas reconocidas y aromas exclusivos para satisfacer todos los gustos, desde lo clásico hasta lo más moderno.
-Ya sea para uso personal, regalo o negocio, aquí encontrarás calidad, autenticidad y excelentes precios.
-Descubre tu próxima fragancia con nosotros y déjate envolver por el arte del buen perfume.</p>
-                          <img class="portada" src=./assets/portada2.webp>`
+let fragUnisex = document.getElementById("frag-unisex1")
+fragUnisex.innerHTML = `<p class="texto">Explora el equilibrio perfecto entre lo masculino y lo femenino con nuestra colección de fragancias unisex.
+Aromas versátiles, modernos y elegantes que se adaptan a cualquier estilo y personalidad.
+Desde esencias frescas y cítricas hasta combinaciones amaderadas y especiadas, cada perfume es una invitación a romper estereotipos y expresar tu autenticidad.
+Elige tu esencia sin etiquetas y haz que tu aroma hable por ti.</p>`
 
+const tarjetasUnix = []
+let fraganciasUnisexs = document.getElementById("frag-unisex")
+fraganciasUnisexs.className = "fraganciasUnix"
+fetch("../baseDatos/fragUni.json")
+    .then(response => response.json())
+    .then(data => {
+        data.forEach((unisex) => {
+            const tarjetasUnisx = document.createElement("section")
+            tarjetasUnisx.className = "tarjeta"
+            tarjetasUnisx.innerHTML = `<img src=${unisex.img} class="imagen">
+                                 <h4>${unisex.marca}</h4>
+                                 <h5>${unisex.nombre}</h5>
+                                 <p class="precio">$${unisex.precio}</p>
+                                 <button class="agrega2" id=${unisex.codigo}>Agregar al Carrito</button>`
+            fraganciasUnisexs.appendChild(tarjetasUnisx)
+            tarjetasUnisx.className = "tarjeta"
+        })
+        añadirAlCarritoUnx (data)
+    })
+
+function añadirAlCarritoUnx (data) {
+    agregaCarritoUnx = document.querySelectorAll(".agrega2")
+    agregaCarritoUnx.forEach (button => {
+        button.onclick = (e) => {
+            const unixCodigo = e.currentTarget.id
+            const agregarProdUnx = data.find (unisex => unisex.codigo === unixCodigo)
+            tarjetasUnix.push(agregarProdUnx)
+            console.log(tarjetasUnix)
+            localStorage.setItem("tarjetasUnix", JSON.stringify(tarjetasUnix))
+            alertAgregado()
+        }
+    })
+}
+
+/***** Producto Agregado con Exito *******/
+const alertAgregado = () => {
+    Swal.fire({                
+        title: "Producto Agregado con ÉXITO",
+        icon: "success",
+        background: "rgb(238, 250, 248)"
+      });
+};
 
 /***** Acceso al Formulario para Iniciar Sesión */                     
 const loguin = document.getElementById("loginIcon")
@@ -66,4 +106,7 @@ function registrar() {
               });
         }
       });
+      
+
     }
+

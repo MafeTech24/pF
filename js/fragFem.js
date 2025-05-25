@@ -1,11 +1,50 @@
-/***** Breve Descripción de la Empresa *******/
-let presentacion = document.getElementById("presentación")
-presentacion.innerHTML = `<p class="texto">Somos una distribuidora especializada en perfumes nacionales e importados, ofreciendo una amplia selección de fragancias femeninas, masculinas y unisex.
-Trabajamos con marcas reconocidas y aromas exclusivos para satisfacer todos los gustos, desde lo clásico hasta lo más moderno.
-Ya sea para uso personal, regalo o negocio, aquí encontrarás calidad, autenticidad y excelentes precios.
-Descubre tu próxima fragancia con nosotros y déjate envolver por el arte del buen perfume.</p>
-                          <img class="portada" src=./assets/portada2.webp>`
+let descripcion = document.getElementById("descripcion")
+descripcion.innerHTML = `<p class="texto">Sumérgete en el universo de la elegancia y la sensualidad con nuestra exclusiva colección de perfumes femeninos.
+Desde aromas suaves y florales hasta notas intensas y sofisticadas, cada fragancia está pensada para resaltar tu esencia en cada momento del día.
+Trabajamos con marcas nacionales e importadas reconocidas por su calidad y distinción.
+Encuentra el perfume ideal que hable por ti… porque cada mujer merece dejar una huella inolvidable.</p>`
 
+const tarjetasFem = []
+let fraganciasFemeninas = document.getElementById("frag-fem")
+fraganciasFemeninas.className = "fraganciasFem"
+fetch("../baseDatos/fragFem.json")
+    .then(response => response.json())
+    .then(data => {
+        data.forEach((femenino) => {
+            const tarjeta = document.createElement("section")
+            tarjeta.className = "tarjeta"
+            tarjeta.innerHTML = `<img src=${femenino.img} class="imagen">
+                                 <h4>${femenino.marca}</h4>
+                                 <h5>${femenino.nombre}</h5>
+                                 <p class="precio">$${femenino.precio}</p>
+                                 <button class="agrega" id=${femenino.codigo}>Agregar al Carrito</button>`
+            fraganciasFemeninas.appendChild(tarjeta)
+            tarjeta.className = "tarjeta"
+        })
+        añadirAlCarrito(data)
+    })
+
+function añadirAlCarrito (data) {
+    agregaCarrito = document.querySelectorAll(".agrega")
+    agregaCarrito.forEach (button => {
+        button.onclick = (e) => {
+            const femCodigo = e.currentTarget.id
+            const agregarProd = data.find (femenino => femenino.codigo === femCodigo)
+            tarjetasFem.push(agregarProd)
+            console.log(tarjetasFem)
+            localStorage.setItem("tarjetasFem", JSON.stringify(tarjetasFem)) 
+            alertAgregado()
+        }
+    })
+}
+/***** Producto Agregado con Exito *******/
+const alertAgregado = () => {
+    Swal.fire({                
+        title: "Producto Agregado con ÉXITO",
+        icon: "success",
+        background: "rgb(238, 250, 248)"
+      });
+};
 
 /***** Acceso al Formulario para Iniciar Sesión */                     
 const loguin = document.getElementById("loginIcon")
@@ -66,4 +105,7 @@ function registrar() {
               });
         }
       });
+      
+
     }
+
