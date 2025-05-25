@@ -48,10 +48,15 @@ h1{
 }
 .agrega,
 .agrega1,
-.agrega2{
+.agrega2,
+.agregaC{
     width: 150px;
     border-radius: 3px;
     background-color: azure;
+}
+.agregaC a{
+    text-decoration: none;
+    color: black;
 }
 .precio{
     font-size: 25px;
@@ -86,3 +91,11 @@ h1{
     border: 2px solid #5f6062;     
     border-radius: 5px;
 }
+.cantidad-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  

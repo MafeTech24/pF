@@ -17,7 +17,8 @@ fetch("../baseDatos/fragUni.json")
                                  <h4>${unisex.marca}</h4>
                                  <h5>${unisex.nombre}</h5>
                                  <p class="precio">$${unisex.precio}</p>
-                                 <button class="agrega2" id=${unisex.codigo}>Agregar al Carrito</button>`
+                                 <button class="agrega2" id=${unisex.codigo}>Agregar al Carrito</button>
+                                 <button class="agregaC"><a href="../html/carrito.html">Ir al Carrito</a></button>`
             fraganciasUnisexs.appendChild(tarjetasUnisx)
             tarjetasUnisx.className = "tarjeta"
         })

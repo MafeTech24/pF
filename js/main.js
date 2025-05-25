@@ -15,7 +15,7 @@ function iniciarSesion() {
         title: 'Iniciar sesión',
         html:
           '<input id="usuario" class="swal2-input" placeholder="Usuario">' +
-            '<input id="clave" type="password" class="swal2-input" placeholder="Contraseña">',            
+        '<input id="clave" type="password" class="swal2-input" placeholder="Contraseña">',
         showCancelButton: true,
         confirmButtonText: 'Ingresar',
         preConfirm: () => {

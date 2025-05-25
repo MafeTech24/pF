@@ -16,8 +16,9 @@ fetch("../baseDatos/fragFem.json")
             tarjeta.innerHTML = `<img src=${femenino.img} class="imagen">
                                  <h4>${femenino.marca}</h4>
                                  <h5>${femenino.nombre}</h5>
-                                 <p class="precio">$${femenino.precio}</p>
-                                 <button class="agrega" id=${femenino.codigo}>Agregar al Carrito</button>`
+                                 <p class="precio">$${femenino.precio}</p>                                 
+                                 <button class="agrega" id=${femenino.codigo}>Agregar al Carrito</button>
+                                 <button class="agregaC"><a href="../html/carrito.html">Ir al Carrito</a></button>`
             fraganciasFemeninas.appendChild(tarjeta)
             tarjeta.className = "tarjeta"
         })

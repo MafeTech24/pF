@@ -17,7 +17,8 @@ fetch("../baseDatos/fragMasc.json")
                                  <h4>${masculino.marca}</h4>
                                  <h5>${masculino.nombre}</h5>
                                  <p class="precio">$${masculino.precio}</p>
-                                 <button class="agrega1" id=${masculino.codigo}>Agregar al Carrito</button>`
+                                 <button class="agrega1" id=${masculino.codigo}>Agregar al Carrito</button>
+                                 <button class="agregaC"><a href="../html/carrito.html">Ir al Carrito</a></button>`
             fraganciasMasculinas.appendChild(tarjetaMs)
             tarjetaMs.className = "tarjeta"
         })

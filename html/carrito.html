@@ -40,7 +40,7 @@
                                 </li>                                                   
                             </ul>
                             <a class="nav-link" href="#">
-                                <img src="../assets/usurio.png" alt="Imagen de Usuario" id="loginIcon" class="registrarse" width="90" height="60">
+                                <img src="../assets/usurio.png" alt="Imagen de Usuario" id="loginIcon" class="registrarse" width="100" height="60">
                             </a>
                             <a class="nav-link" href="#">
                                 <img src="../assets/nuevoUsuario.png" alt="Imagen de Nuevo Usuario" id="registrarse"  width="90" height="50">
@@ -59,6 +59,22 @@
         <div id="tarjetaCarrito1"></div>
         <div id="tarjetaCarrito2"></div>
         </div>
+        <div class="text-end m-3">
+            <button id="finalizarCompra" class="btn btn-success">Finalizar Compra</button>
+        </div>
+        <div class="text-end m-3">
+            <button id="vaciarCarrito" class="btn btn-danger">Vaciar Carrito</button>
+        </div>
+        <div class="text-end m-3">
+            <button id="guardarPedido" class="btn btn-primary">Guardar Pedido</button>
+        </div>
+        <div class="text-end m-3">
+            <button id="generarTicket" class="btn btn-success">Generar Ticket PDF</button>
+          </div>
+          
+        <!--<div id="totalContainer" class="text-end p-3">
+            <h3 id="h3">Total: $<span id="totalGeneral">0</span></h3>
+          </div> -->          
     </main>
     <footer>
         <div class="bg-body-tertiary">
@@ -76,5 +92,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- TOASTIFY -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </body>
 </html>
