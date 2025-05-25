@@ -14,9 +14,9 @@ fetch("../baseDatos/fragFem.json")
             const tarjeta = document.createElement("section")
             tarjeta.className = "tarjeta"
             tarjeta.innerHTML = `<img src=${femenino.img} class="imagen">
-                                 <h4>${femenino.marca}</h4>
-                                 <h5>${femenino.nombre}</h5>
-                                 <p class="precio">$${femenino.precio}</p>                                 
+                                 <h5>${femenino.marca}</h5>
+                                 <h6>${femenino.nombre}</h6>
+                                 <p id="precio">$${femenino.precio}</p>                                 
                                  <button class="agrega" id=${femenino.codigo}>Agregar al Carrito</button>
                                  <button class="agregaC"><a href="../html/carrito.html">Ir al Carrito</a></button>`
             fraganciasFemeninas.appendChild(tarjeta)

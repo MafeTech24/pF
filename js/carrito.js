@@ -1,147 +1,11 @@
-// let tarjetaStorage = localStorage.getItem("tarjetasFem")
-// tarjetaStorage = JSON.parse(tarjetaStorage)
+let tarjetaStorage = localStorage.getItem("tarjetasFem")
+tarjetaStorage = JSON.parse(tarjetaStorage)
 
-// let tarjetaCarrito = document.getElementById("tarjetaCarrito")
-// function renderCarrito (productosAgregados) {
-//     productosAgregados.forEach(femenina => {
-//         const agregados = document.createElement("section")
-//         agregados.innerHTML = `<img src=${femenina.img} class="img-car">
-//                                <h3 class="subTit2">${femenina.marca}</h3>
-//                                <h4 class="subTit3">${femenina.nombre}</h4>
-//                                <p class="precio" id="precio">Precio Unitario $${femenina.precio}
-//                                <button class="menos"> - </button>
-//                                <span class="counter"> 1 </span>
-//                                <button class="mas"> + </button>
-//                                </p>
-//                                <p>Subtotal</p>
-//                                <span class="subtotal">0</span>`
-//         tarjetaCarrito.appendChild(agregados)
-//         agregados.className = "tarj-car"
-//     })
-// }
-// renderCarrito(tarjetaStorage)
+let tarjMscStorage = localStorage.getItem("tarjetasMasc")
+tarjMscStorage = JSON.parse(tarjMscStorage)
 
-// let tarjMscStorage = localStorage.getItem("tarjetasMasc")
-// tarjMscStorage = JSON.parse(tarjMscStorage)
-
-// let tarjetaCarrito1 = document.getElementById("tarjetaCarrito1")
-// function renderCarrito1 (productosAgregados1) {
-//     productosAgregados1.forEach(masculino => {
-//         const agregadosMsc = document.createElement("section")
-//         agregadosMsc.innerHTML = `<img src=${masculino.img} class="img-car">
-//                                <h3 class="subTit2">${masculino.marca}</h3>
-//                                <h4 class="subTit3">${masculino.nombre}</h4>
-//                                <p class="precio" id="precio">Precio Unitario $${masculino.precio}
-//                                <button class="menos"> - </button>
-//                                <span class="counter"> 1 </span>
-//                                <button class="mas"> + </button>
-//                                </p>
-//                                <p>Subtotal</p>
-//                                <span class="subtotal"></span>`
-//         tarjetaCarrito1.appendChild(agregadosMsc)
-//         agregadosMsc.className = "tarj-car"
-//     })
-// }
-// renderCarrito1(tarjMscStorage)
-
-// let tarjUnxStorage = localStorage.getItem("tarjetasUnix")
-// tarjUnxStorage = JSON.parse(tarjUnxStorage)
-
-// let tarjetaCarrito2 = document.getElementById("tarjetaCarrito2")
-// function renderCarrito2 (productosAgregados) {
-//     productosAgregados.forEach(unisex => {
-//         const agregadosUnx = document.createElement("section")
-//         agregadosUnx.innerHTML = `<img src=${unisex.img} class="img-car">
-//                                <h3 class="subTit2">${unisex.marca}</h3>
-//                                <h4 class="subTit2">${unisex.nombre}</h4>
-//                                <p class="precio" id="precio">Precio Unitario $${unisex.precio}
-//                                <button class="menos"> - </button>
-//                                <span class="counter"> 1 </span>
-//                                <button class="mas"> + </button>
-//                                </p>
-//                                <p>Subtotal</p>
-//                                <span class="subtotal"></span>`
-//         tarjetaCarrito1.appendChild(agregadosUnx)
-//         agregadosUnx.className = "tarj-car"
-//     })
-// }
-// renderCarrito2(tarjUnxStorage)
-
-
-// let resta = document.querySelectorAll(".menos")
-// let counter = document.querySelectorAll(".counter")
-// let suma = document.querySelectorAll(".mas")
-// let contador = 1
-// let precio = document.querySelectorAll(".precio")
-// let subtotal = document.querySelectorAll(".subtotal")
-
-
-
-// /***** Acceso al Formulario para Iniciar Sesión */
-// const loguin = document.getElementById("loginIcon")
-// loguin.addEventListener("click", iniciarSesion)
-// function iniciarSesion() {
-//     Swal.fire({
-//         title: 'Iniciar sesión',
-//         html:
-//           '<input id="usuario" class="swal2-input" placeholder="Usuario">' +
-//             '<input id="clave" type="password" class="swal2-input" placeholder="Contraseña">',
-//         showCancelButton: true,
-//         confirmButtonText: 'Ingresar',
-//         preConfirm: () => {
-//           const usuario = document.getElementById('usuario').value;
-//           const clave = document.getElementById('clave').value;
-//           if (!usuario || !clave) {
-//             Swal.showValidationMessage('Completa ambos campos');
-//           }
-//           return { usuario, clave };
-//         }
-//       });
-// }
-// /****** Acceso al Formulario para Registrarse y Crear Nueva Cuenta *****/
-// const registrarse = document.getElementById("registrarse")
-// registrarse.addEventListener("click", registrar)
-// function registrar() {
-//     Swal.fire({
-//         title: 'Registro de Cuenta Nueva',
-//         html:
-//           '<input id="nombre" class="swal2-input" placeholder="Nombre">' +
-//           '<input id="apellido" class="swal2-input" placeholder="Apellido">' +
-//           '<input id="email" type="email" class="swal2-input" placeholder="Correo electrónico">' +
-//           '<input id="telefono" class="swal2-input" placeholder="Teléfono">' +
-//           '<input id="password" type="password" class="swal2-input" placeholder="Contraseña">',
-//         confirmButtonText: 'Registrarse',
-//         showCancelButton: true,
-//         preConfirm: () => {
-//           const nombre = document.getElementById('nombre').value;
-//           const apellido = document.getElementById('apellido').value;
-//           const email = document.getElementById('email').value;
-//           const telefono = document.getElementById('telefono').value;
-//           const password = document.getElementById('password').value;
-          
-      
-//           if (!nombre || !apellido || !email || !telefono || !password) {
-//             Swal.showValidationMessage('Por favor, completa todos los campos');
-//             return false;
-//           }
-      
-//           return { nombre, apellido, email, telefono, password };
-//         }
-//       }).then((result) => {
-//         if (result.isConfirmed) {
-//             Swal.fire({
-//                 title: "Se ha Registrado con Éxito!",
-//                 icon: "success",
-//                 confirmButtonText: "Ingresar"
-//               });
-//         }
-//       });
-      
-
-//     }
-
-
-
+let tarjUnxStorage = localStorage.getItem("tarjetasUnix")
+tarjUnxStorage = JSON.parse(tarjUnxStorage)
 
 const tarjetaCarrito = document.getElementById("tarjetaCarrito");
 const productos = [
@@ -160,31 +24,30 @@ productos.forEach(prod => {
   }
 });
 
+/********* SUMAR - RESTAR - ELIMINAR PRODUCTOS SELECCIONADOS ***********/
 const carrito = Object.values(carritoMap);
 
 function compraCarrito() {
   tarjetaCarrito.innerHTML = "";
   let total = 0;
 
-  carrito.forEach((item, index) => {
-    const subtotal = item.precio * item.cantidad;
+  carrito.forEach((producto, index) => {
+    const subtotal = producto.precio * producto.cantidad;
     total += subtotal;
 
     const section = document.createElement("section");
     section.className = "tarj-car";
-    section.innerHTML = `
-      <img src="${item.img}" class="img-car">
-      <h3 class="subTit2">${item.marca}</h3>
-      <h4 class="subTit3">${item.nombre}</h4>
-      <p class="precio">Precio Unitario: $${item.precio}</p>
-      <div class="cantidad-controls">
-        <button class="menos btn btn-outline-danger btn-sm" data-index="${index}">-</button>
-        <span class="counter mx-2">${item.cantidad}</span>
-        <button class="mas btn btn-outline-success btn-sm" data-index="${index}">+</button>
-      </div>
-      <p>Subtotal: <strong>$${subtotal}</strong></p>
-      <button class="eliminar btn btn-danger btn-sm mt-2" data-index="${index}">Eliminar</button>
-    `;
+    section.innerHTML = `<img src="${producto.img}" class="img-car">
+                        <h3 class="subTit2">${producto.marca}</h3>
+                        <h4 class="subTit3">${producto.nombre}</h4>
+                        <p class="precio">Precio Unitario: $${producto.precio}</p>
+                        <div class="cantidad-controls">
+                        <button class="menos btn btn-outline-danger btn-sm" data-index="${index}">-</button>
+                        <span class="counter mx-2">${producto.cantidad}</span>
+                        <button class="mas btn btn-outline-success btn-sm" data-index="${index}">+</button>
+                        </div>
+                        <p class="subtotal">Subtotal: <strong>$${subtotal}</strong></p>
+                        <button class="eliminar btn-sm mt-2" data-index="${index}">Eliminar</button>`;
     tarjetaCarrito.appendChild(section);
   });
 
@@ -229,7 +92,7 @@ function asignarEventos() {
       }).then((result) => {
         if (result.isConfirmed) {
           carrito.splice(index, 1);
-          renderCarrito();
+          compraCarrito();
         }
       });
     });
@@ -238,7 +101,7 @@ function asignarEventos() {
 
 compraCarrito();
 
-/************ FINALIZAR COMPRA Y CARRITO VACIO  ****************/
+/************ FINALIZAR COMPRA Y VACIAR CARRITO  ****************/
 const finalizarCompraBtn = document.getElementById("finalizarCompra");
 
 finalizarCompraBtn.addEventListener("click", () => {
@@ -261,16 +124,12 @@ finalizarCompraBtn.addEventListener("click", () => {
     confirmButtonText: 'Sí, comprar',
     cancelButtonText: 'Cancelar'
   }).then(result => {
-    if (result.isConfirmed) {
-      // Limpiar localStorage
+    if (result.isConfirmed) {  
       localStorage.removeItem("tarjetasFem");
       localStorage.removeItem("tarjetasMasc");
-      localStorage.removeItem("tarjetasUnix");
-
-      // Vaciar la vista
+      localStorage.removeItem("tarjetasUnix");      
       carrito.length = 0;
       compraCarrito();
-
       Swal.fire({
         title: '¡Compra realizada!',
         text: 'Gracias por tu compra. Te enviaremos los detalles por correo.',
@@ -281,7 +140,8 @@ finalizarCompraBtn.addEventListener("click", () => {
 });
 
 const vaciarCarritoBtn = document.getElementById("vaciarCarrito");
-
+let tarjetaCarrito1 = document.getElementById("tarjetaCarrito1");
+let tarjetaCarrito2 = document.getElementById("tarjetaCarrito2")
 vaciarCarritoBtn.addEventListener("click", () => {
   Swal.fire({
     title: "¿Estás seguro?",
@@ -295,12 +155,9 @@ vaciarCarritoBtn.addEventListener("click", () => {
       localStorage.removeItem("tarjetasFem");
       localStorage.removeItem("tarjetasMasc");
       localStorage.removeItem("tarjetasUnix");
-
-      // Limpia visualmente el carrito
       tarjetaCarrito.innerHTML = "";
       tarjetaCarrito1.innerHTML = "";
       tarjetaCarrito2.innerHTML = "";
-
       Swal.fire({
         icon: "success",
         title: "Carrito vaciado",
@@ -310,43 +167,82 @@ vaciarCarritoBtn.addEventListener("click", () => {
   });
 });
 
+/************** GUARDAR PEDIDO (SE GUARDA EN LOCALSTORAGE) **************/
 
 const guardarPedidoBtn = document.getElementById("guardarPedido");
+const fecha = new Date().toLocaleString()
 
 guardarPedidoBtn.addEventListener("click", () => {
-  const pedido = {
-    femeninas: JSON.parse(localStorage.getItem("tarjetasFem")) || [],
-    masculinas: JSON.parse(localStorage.getItem("tarjetasMasc")) || [],
-    unisex: JSON.parse(localStorage.getItem("tarjetasUnix")) || [],
-    fecha: new Date().toLocaleString()
-  };
-
-  console.log("Pedido guardado:", pedido);
-
-  Swal.fire({
-    icon: "success",
-    title: "Pedido guardado exitosamente",    
+    const pedido = [tarjetaStorage,tarjMscStorage,tarjUnxStorage,fecha]
+    console.log("Pedido guardado:", pedido);
+    Swal.fire({
+      icon: "success",
+      title: "Pedido guardado exitosamente",    
   });
 });
 
-
-function calcularTotalGeneral() {
-  let total = 0;
-
-  const fem = JSON.parse(localStorage.getItem("tarjetasFem")) || [];
-  const masc = JSON.parse(localStorage.getItem("tarjetasMasc")) || [];
-  const unx = JSON.parse(localStorage.getItem("tarjetasUnix")) || [];
-
-  const productos = [...fem, ...masc, ...unx];
-
-  productos.forEach(() => {
-    total += 1; 
-  });
-  
-  total = productos.reduce((acc, prod) => acc + Number(prod.precio), 0);
-
-  document.getElementById("totalGeneral").innerText = total;
+/***** Acceso al Formulario para Iniciar Sesión */                     
+const loguin = document.getElementById("loginIcon")
+loguin.addEventListener("click", iniciarSesion)
+function iniciarSesion() {
+    Swal.fire({
+        title: 'Iniciar sesión',
+        html:
+          '<input id="usuario" class="swal2-input" placeholder="Usuario">' +
+            '<input id="clave" type="password" class="swal2-input" placeholder="Contraseña">',            
+        showCancelButton: true,
+        confirmButtonText: 'Ingresar',
+        preConfirm: () => {
+          const usuario = document.getElementById('usuario').value;
+          const clave = document.getElementById('clave').value;
+          if (!usuario || !clave) {
+            Swal.showValidationMessage('Completa ambos campos');
+          }
+          return { usuario, clave };
+        }
+      });
 }
-calcularTotalGeneral();
+/****** Acceso al Formulario para Registrarse y Crear Nueva Cuenta *****/
+const registrarse = document.getElementById("registrarse")
+registrarse.addEventListener("click", registrar)
+function registrar() {    
+    Swal.fire({
+        title: 'Registro de Cuenta Nueva',
+        html:
+          '<input id="nombre" class="swal2-input" placeholder="Nombre">' +
+          '<input id="apellido" class="swal2-input" placeholder="Apellido">' +
+          '<input id="email" type="email" class="swal2-input" placeholder="Correo electrónico">' +
+          '<input id="telefono" class="swal2-input" placeholder="Teléfono">' +
+          '<input id="password" type="password" class="swal2-input" placeholder="Contraseña">',          
+        confirmButtonText: 'Registrarse',
+        showCancelButton: true,
+        preConfirm: () => {
+          const nombre = document.getElementById('nombre').value;
+          const apellido = document.getElementById('apellido').value;
+          const email = document.getElementById('email').value;
+          const telefono = document.getElementById('telefono').value;
+          const password = document.getElementById('password').value;
+          
+      
+          if (!nombre || !apellido || !email || !telefono || !password) {
+            Swal.showValidationMessage('Por favor, completa todos los campos');
+            return false;
+          }
+      
+          return { nombre, apellido, email, telefono, password };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Se ha Registrado con Éxito!",
+                icon: "success",
+                confirmButtonText: "Ingresar"
+              });
+        }
+      });
+      
+
+    }
+
 
 
