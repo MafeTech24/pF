@@ -139,7 +139,7 @@
 // }
 // renderFem(femeninas)
 
-
+const tarjetasFem = []
 let fraganciasFemeninas = document.getElementById("frag-fem")
 fraganciasFemeninas.className = "fraganciasFem"
 fetch("../baseDatos/fragFem.json")
@@ -156,6 +156,7 @@ fetch("../baseDatos/fragFem.json")
             fraganciasFemeninas.appendChild(tarjeta)
             tarjeta.className = "tarjeta"
         })
+        añadirAlCarrito (data)
     })
 
 // fetch("../baseDatos/fragFem.json")
@@ -164,15 +165,14 @@ fetch("../baseDatos/fragFem.json")
 //   .catch(err => console.error('Error al cargar JSON:', err));
 
 
-function añadirAlCarrito () {
+function añadirAlCarrito (data) {
     agregaCarrito = document.querySelectorAll(".agrega")
     agregaCarrito.forEach (button => {
         button.onclick = (e) => {
             const femCodigo = e.currentTarget.id
-            const agregarProd = femeninas.find (femenina => femenina.codigo == femCodigo)
+            const agregarProd = data.find (femenino => femenino.codigo === femCodigo)
             tarjetasFem.push(agregarProd)
             console.log(tarjetasFem)
-
             localStorage.setItem("tarjetasFem", JSON.stringify(tarjetasFem))
         }
     })
@@ -203,7 +203,7 @@ Encuentra el perfume ideal que hable por ti… porque cada mujer merece dejar un
 //         presentacion: 150,
 //         codigo:1200,
 //         precio:106150,
-//     },    
+//     },
 //     {
 //         img:"../assets/perfumeria/davidoff1400.webp",
 //         marca: "DAVIDOFF",
@@ -259,12 +259,10 @@ Encuentra el perfume ideal que hable por ti… porque cada mujer merece dejar un
 //         presentacion: 125,
 //         codigo:2400,
 //         precio:330000,
-//     }, 
-// ]                         
+//     },
+// ]
 
-const tarjetasMasc = []
-let fraganciasMasculinas = document.getElementById("frag-masc")
-fraganciasMasculinas.className = "fraganciasMasc"
+
 // function renderMasc(masculinosArrays) {
 //     masculinosArrays.forEach((masculino) => {
 //         const tarjetaMsc = document.createElement("section")
@@ -280,31 +278,34 @@ fraganciasMasculinas.className = "fraganciasMasc"
 // }
 // renderMasc(masculinos)
 
+const tarjetasMasc = []
+let fraganciasMasculinas = document.getElementById("frag-masc")
+fraganciasMasculinas.className = "fraganciasMasc"
 fetch("../baseDatos/fragMasc.json")
     .then(response => response.json())
     .then(data => {
         data.forEach((masculino) => {
-            const tarjeta = document.createElement("section")
-            tarjeta.className = "tarjeta"
-            tarjeta.innerHTML = `<img src=${masculino.img} class="imagen">
+            const tarjetaMs = document.createElement("section")
+            tarjetaMs.className = "tarjeta"
+            tarjetaMs.innerHTML = `<img src=${masculino.img} class="imagen">
                                  <h4>${masculino.marca}</h4>
                                  <h5>${masculino.nombre}</h5>
                                  <p class="precio">$${masculino.precio}</p>
-                                 <button class="agrega" id=${masculino.codigo}>Agregar al Carrito</button>`
-            fraganciasMasculinas.appendChild(tarjeta)
-            tarjeta.className = "tarjeta"
+                                 <button class="agrega1" id=${masculino.codigo}>Agregar al Carrito</button>`
+            fraganciasMasculinas.appendChild(tarjetaMs)
+            tarjetaMs.className = "tarjeta"
         })
+        añadirAlCarritoMs (data)
     })
 
-function añadirAlCarritoMs () {
+function añadirAlCarritoMs (data) {
     agregaCarritoMs = document.querySelectorAll(".agrega1")
     agregaCarritoMs.forEach (button => {
         button.onclick = (e) => {
             const mascCodigo = e.currentTarget.id
-            const agregarProdMs = masculinos.find (masculino => masculino.codigo == mascCodigo)
+            const agregarProdMs = data.find (masculino => masculino.codigo === mascCodigo)
             tarjetasMasc.push(agregarProdMs)
             console.log(tarjetasMasc)
-
             localStorage.setItem("tarjetasMasc", JSON.stringify(tarjetasMasc))
         }
     })
@@ -405,9 +406,7 @@ Aromas versátiles, modernos y elegantes que se adaptan a cualquier estilo y per
 Desde esencias frescas y cítricas hasta combinaciones amaderadas y especiadas, cada perfume es una invitación a romper estereotipos y expresar tu autenticidad.
 Elige tu esencia sin etiquetas y haz que tu aroma hable por ti.</p>`
 
-const tarjetasUnix = []
-let fraganciasUnisexs = document.getElementById("frag-unisex")
-fraganciasUnisexs.className = "fraganciasUnix"
+
 // function renderUnix(unisexsArrays) {
 //     unisexsArrays.forEach((unisex) => {
 //         const tarjetaUnx = document.createElement("section")
@@ -423,34 +422,37 @@ fraganciasUnisexs.className = "fraganciasUnix"
 // }
 // renderUnix(unisexs)
 
+const tarjetasUnix = []
+let fraganciasUnisexs = document.getElementById("frag-unisex")
+fraganciasUnisexs.className = "fraganciasUnix"
 fetch("../baseDatos/fragUni.json")
     .then(response => response.json())
     .then(data => {
         data.forEach((unisex) => {
-            const tarjeta = document.createElement("section")
-            tarjeta.className = "tarjeta"
-            tarjeta.innerHTML = `<img src=${unisex.img} class="imagen">
+            const tarjetasUnisx = document.createElement("section")
+            tarjetasUnisx.className = "tarjeta"
+            tarjetasUnisx.innerHTML = `<img src=${unisex.img} class="imagen">
                                  <h4>${unisex.marca}</h4>
                                  <h5>${unisex.nombre}</h5>
                                  <p class="precio">$${unisex.precio}</p>
-                                 <button class="agrega" id=${unisex.codigo}>Agregar al Carrito</button>`
-            fraganciasUnisexs.appendChild(tarjeta)
-            tarjeta.className = "tarjeta"
+                                 <button class="agrega2" id=${unisex.codigo}>Agregar al Carrito</button>`
+            fraganciasUnisexs.appendChild(tarjetasUnisx)
+            tarjetasUnisx.className = "tarjeta"
         })
+        añadirAlCarritoUnx (data)
     })
 
 
 
 
-function añadirAlCarritoUnx () {
+function añadirAlCarritoUnx (data) {
     agregaCarritoUnx = document.querySelectorAll(".agrega2")
     agregaCarritoUnx.forEach (button => {
         button.onclick = (e) => {
             const unixCodigo = e.currentTarget.id
-            const agregarProdUnx = unisexs.find (unisex => unisex.codigo == unixCodigo)
+            const agregarProdUnx = data.find (unisex => unisex.codigo === unixCodigo)
             tarjetasUnix.push(agregarProdUnx)
             console.log(tarjetasUnix)
-
             localStorage.setItem("tarjetasUnix", JSON.stringify(tarjetasUnix))
         }
     })

@@ -8,36 +8,18 @@ function renderCarrito (productosAgregados) {
         agregados.innerHTML = `<img src=${femenina.img} class="img-car">
                                <h3 class="subTit2">${femenina.marca}</h3>
                                <h4 class="subTit3">${femenina.nombre}</h4>
-                               <p class="precCar" id="precio">Precio Unitario $${femenina.precio}
-                               <button class="menos"> - </button><span class="counter"> 1 </span><button class="mas"> + </button>
+                               <p class="precio" id="precio">Precio Unitario $${femenina.precio}
+                               <button class="menos"> - </button>
+                               <span class="counter"> 1 </span>
+                               <button class="mas"> + </button>
                                </p>
                                <p>Subtotal</p>
-                               <span id="subtotal">0</span>`
+                               <span class="subtotal">0</span>`
         tarjetaCarrito.appendChild(agregados)
         agregados.className = "tarj-car"
     })
 }
 renderCarrito(tarjetaStorage)
-
-let resta = document.getElementById("menos")
-let counter = document.getElementById("counter")
-let suma = document.getElementById("mas")
-let contador = 1
-let precio = document.getElementById("precio")
-let subtotal = document.getElementById("subtotal")
-
-suma.onclick = () => {
-     contador++
-     counter.innerHTML = contador
-}
- 
-resta.onclick = () => {
-    contador--
-    counter.innerHTML = contador
-}
-
-
-
 
 let tarjMscStorage = localStorage.getItem("tarjetasMasc")
 tarjMscStorage = JSON.parse(tarjMscStorage)
@@ -49,11 +31,13 @@ function renderCarrito1 (productosAgregados1) {
         agregadosMsc.innerHTML = `<img src=${masculino.img} class="img-car">
                                <h3 class="subTit2">${masculino.marca}</h3>
                                <h4 class="subTit3">${masculino.nombre}</h4>
-                               <p class="precCar" id="precio">Precio Unitario $${masculino.precio}
-                               <button id="menos"> - </button><span id="counter"> 1 </span><button id="mas"> + </button>
+                               <p class="precio" id="precio">Precio Unitario $${masculino.precio}
+                               <button class="menos"> - </button>
+                               <span class="counter"> 1 </span>
+                               <button class="mas"> + </button>
                                </p>
                                <p>Subtotal</p>
-                               <span id="subtotal"></span>`
+                               <span class="subtotal"></span>`
         tarjetaCarrito1.appendChild(agregadosMsc)
         agregadosMsc.className = "tarj-car"
     })
@@ -70,11 +54,13 @@ function renderCarrito2 (productosAgregados) {
         agregadosUnx.innerHTML = `<img src=${unisex.img} class="img-car">
                                <h3 class="subTit2">${unisex.marca}</h3>
                                <h4 class="subTit2">${unisex.nombre}</h4>
-                               <p class="precCar" id="precio">Precio Unitario $${unisex.precio}
-                               <button id="menos"> - </button><span id="counter"> 1 </span><button id="mas"> + </button>
+                               <p class="precio" id="precio">Precio Unitario $${unisex.precio}
+                               <button class="menos"> - </button>
+                               <span class="counter"> 1 </span>
+                               <button class="mas"> + </button>
                                </p>
                                <p>Subtotal</p>
-                               <span id="subtotal"></span>`
+                               <span class="subtotal"></span>`
         tarjetaCarrito1.appendChild(agregadosUnx)
         agregadosUnx.className = "tarj-car"
     })
@@ -82,6 +68,22 @@ function renderCarrito2 (productosAgregados) {
 renderCarrito2(tarjUnxStorage)
 
 
+let resta = document.querySelectorAll("menos")
+let counter = document.querySelectorAll("counter")
+let suma = document.querySelectorAll("mas")
+let contador = 1
+let precio = document.querySelectorAll("precio")
+let subtotal = document.querySelectorAll("subtotal")
+
+// suma.onclick = () => {
+//      contador++
+//      counter.innerHTML = contador
+// }
+ 
+// resta.onclick = () => {
+//     contador--
+//     counter.innerHTML = contador
+// }
 
 let container = document.getElementById("container")
 container.className = "contenedorCarrito"
