@@ -138,7 +138,14 @@
 //     añadirAlCarrito()
 // }
 // renderFem(femeninas)
-
+// const Toast = Swal.mixin({
+//     toast: true,
+//     position: 'center',
+//     showConfirmButton: false,
+//     timer: 2000,
+//     timerProgressBar: true
+// });
+  
 const tarjetasFem = []
 let fraganciasFemeninas = document.getElementById("frag-fem")
 fraganciasFemeninas.className = "fraganciasFem"
@@ -156,14 +163,8 @@ fetch("../baseDatos/fragFem.json")
             fraganciasFemeninas.appendChild(tarjeta)
             tarjeta.className = "tarjeta"
         })
-        añadirAlCarrito (data)
+        añadirAlCarrito(data)
     })
-
-// fetch("../baseDatos/fragFem.json")
-//   .then(response => response.json())
-//   .then(data => console.log(data))
-//   .catch(err => console.error('Error al cargar JSON:', err));
-
 
 function añadirAlCarrito (data) {
     agregaCarrito = document.querySelectorAll(".agrega")
@@ -173,10 +174,13 @@ function añadirAlCarrito (data) {
             const agregarProd = data.find (femenino => femenino.codigo === femCodigo)
             tarjetasFem.push(agregarProd)
             console.log(tarjetasFem)
-            localStorage.setItem("tarjetasFem", JSON.stringify(tarjetasFem))
+            localStorage.setItem("tarjetasFem", JSON.stringify(tarjetasFem)) 
+            alertAgregado()
         }
     })
 }
+
+
 
 let descripcion = document.getElementById("descripcion")
 descripcion.innerHTML = `<a href="#frag-masc1">Fragancias Masculinas</a>
@@ -307,6 +311,7 @@ function añadirAlCarritoMs (data) {
             tarjetasMasc.push(agregarProdMs)
             console.log(tarjetasMasc)
             localStorage.setItem("tarjetasMasc", JSON.stringify(tarjetasMasc))
+            alertAgregado()
         }
     })
 }
@@ -442,9 +447,6 @@ fetch("../baseDatos/fragUni.json")
         añadirAlCarritoUnx (data)
     })
 
-
-
-
 function añadirAlCarritoUnx (data) {
     agregaCarritoUnx = document.querySelectorAll(".agrega2")
     agregaCarritoUnx.forEach (button => {
@@ -454,7 +456,37 @@ function añadirAlCarritoUnx (data) {
             tarjetasUnix.push(agregarProdUnx)
             console.log(tarjetasUnix)
             localStorage.setItem("tarjetasUnix", JSON.stringify(tarjetasUnix))
+            alertAgregado()
         }
     })
 }
 
+const alertAgregado = () => {
+    Swal.fire({                
+        title: "Producto Agregado con ÉXITO",
+        icon: "success",
+        background: "rgb(238, 250, 248)"
+      });
+};
+
+const loguin = document.getElementById("loginIcon")
+loguin.addEventListener("click", iniciarSesion)
+function iniciarSesion() {
+    Swal.fire({
+        title: 'Iniciar sesión',
+        html:
+          '<input id="usuario" class="swal2-input" placeholder="Usuario">' +
+            '<input id="clave" type="password" class="swal2-input" placeholder="Contraseña">',
+            footer:'<a href="#">Crea una Cuenta</a>',
+        showCancelButton: true,
+        confirmButtonText: 'Entrar',
+        preConfirm: () => {
+          const usuario = document.getElementById('usuario').value;
+          const clave = document.getElementById('clave').value;
+          if (!usuario || !clave) {
+            Swal.showValidationMessage('Completa ambos campos');
+          }
+          return { usuario, clave };
+        }
+      });
+}

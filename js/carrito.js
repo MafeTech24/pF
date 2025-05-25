@@ -85,5 +85,24 @@ let subtotal = document.querySelectorAll("subtotal")
 //     counter.innerHTML = contador
 // }
 
-let container = document.getElementById("container")
-container.className = "contenedorCarrito"
+const loguin = document.getElementById("loginIcon")
+loguin.addEventListener("click", iniciarSesion)
+function iniciarSesion() {
+    Swal.fire({
+        title: 'Iniciar sesión',
+        html:
+          '<input id="usuario" class="swal2-input" placeholder="Usuario">' +
+            '<input id="clave" type="password" class="swal2-input" placeholder="Contraseña">',
+            footer:'<a href="#">Crea una Cuenta</a>',
+        showCancelButton: true,
+        confirmButtonText: 'Entrar',
+        preConfirm: () => {
+          const usuario = document.getElementById('usuario').value;
+          const clave = document.getElementById('clave').value;
+          if (!usuario || !clave) {
+            Swal.showValidationMessage('Completa ambos campos');
+          }
+          return { usuario, clave };
+        }
+      });
+}
