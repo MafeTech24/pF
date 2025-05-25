@@ -150,7 +150,7 @@ const productos = [
   ...(JSON.parse(localStorage.getItem("tarjetasUnix")) || [])
 ];
 
-// Combina productos por código (para evitar duplicados)
+/********** PARA EVITAR DUPLICADOS *************/
 const carritoMap = {};
 productos.forEach(prod => {
   if (carritoMap[prod.codigo]) {
@@ -162,7 +162,7 @@ productos.forEach(prod => {
 
 const carrito = Object.values(carritoMap);
 
-function renderCarrito() {
+function compraCarrito() {
   tarjetaCarrito.innerHTML = "";
   let total = 0;
 
@@ -201,7 +201,7 @@ function asignarEventos() {
     btn.addEventListener("click", () => {
       const index = btn.dataset.index;
       carrito[index].cantidad++;
-      renderCarrito();
+      compraCarrito();
     });
   });
 
@@ -211,7 +211,7 @@ function asignarEventos() {
       if (carrito[index].cantidad > 1) {
         carrito[index].cantidad--;
       }
-      renderCarrito();
+      compraCarrito();
     });
   });
 
@@ -236,8 +236,9 @@ function asignarEventos() {
   });
 }
 
-renderCarrito();
+compraCarrito();
 
+/************ FINALIZAR COMPRA Y CARRITO VACIO  ****************/
 const finalizarCompraBtn = document.getElementById("finalizarCompra");
 
 finalizarCompraBtn.addEventListener("click", () => {
@@ -268,7 +269,7 @@ finalizarCompraBtn.addEventListener("click", () => {
 
       // Vaciar la vista
       carrito.length = 0;
-      renderCarrito();
+      compraCarrito();
 
       Swal.fire({
         title: '¡Compra realizada!',
@@ -324,17 +325,8 @@ guardarPedidoBtn.addEventListener("click", () => {
 
   Swal.fire({
     icon: "success",
-    title: "Pedido guardado (simulado)",
-    text: "Este pedido puede enviarse a una API en el futuro.",
-    footer: "<small>Revisá la consola para ver el objeto completo.</small>"
+    title: "Pedido guardado exitosamente",    
   });
-
-  // Más adelante podrías hacer:
-  // fetch("https://tu-api.com/pedidos", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(pedido)
-  // });
 });
 
 
@@ -348,44 +340,13 @@ function calcularTotalGeneral() {
   const productos = [...fem, ...masc, ...unx];
 
   productos.forEach(() => {
-    total += 1; // Por ahora, 1 unidad por producto (podés adaptarlo si llevás cantidades)
+    total += 1; 
   });
-
-  // Suponemos precio fijo por unidad (adaptar si hay cambios dinámicos)
+  
   total = productos.reduce((acc, prod) => acc + Number(prod.precio), 0);
 
   document.getElementById("totalGeneral").innerText = total;
 }
 calcularTotalGeneral();
 
-const generarTicket = document.getElementById("generarTicket");
-
-generarTicket.addEventListener("click", async () => {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  const fem = JSON.parse(localStorage.getItem("tarjetasFem")) || [];
-  const masc = JSON.parse(localStorage.getItem("tarjetasMasc")) || [];
-  const unx = JSON.parse(localStorage.getItem("tarjetasUnix")) || [];
-
-  let productos = [...fem, ...masc, ...unx];
-  let y = 20;
-
-  doc.setFontSize(16);
-  doc.text("Distribuidora Dulce y Bella", 20, 10);
-  doc.setFontSize(12);
-  doc.text("Ticket de compra", 20, 15);
-  doc.setFontSize(10);
-
-  productos.forEach((prod, index) => {
-    doc.text(`${index + 1}. ${prod.marca} - ${prod.nombre} | $${prod.precio}`, 10, y);
-    y += 7;
-  });
-
-  const total = productos.reduce((acc, p) => acc + Number(p.precio), 0);
-  doc.setFontSize(12);
-  doc.text(`Total: $${total}`, 10, y + 10);
-
-  doc.save("ticket_compra.pdf");
-});
 
